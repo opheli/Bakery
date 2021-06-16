@@ -1,36 +1,58 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, FormControl } from 'react-bootstrap';
-import { InputGroup } from "react-bootstrap";
-
 
 class Add extends React.Component {
     constructor() {
-        super();
+        super()
         this.state = {
             productName: "",
-            price: 1
+            price: 1,
         }
+
         this.updateProductName = this.updateProductName.bind(this)
+        this.updatePrice = this.updatePrice.bind(this)
+        this.sendItem = this.sendItem.bind(this)
     }
-    updateProductName() {
+
+    updateProductName(e) {
+        this.setState({ productName: e.target.value })
     }
+
+    updatePrice(e) {
+        this.setState({ price: e.target.value })
+    }
+
+    sendItem() {
+        this.props.onAdd(this.state.productName, this.state.price)
+    }
+
     render() {
         return (
-            <div>
-                <InputGroup className="mb-3"
-                    onChange={this.updateProductName}>
-                    <FormControl
-                        placeholder="Taper le nom de votre article"
-                        aria-label="Recipient's username"
-                        aria-describedby="basic-addon2"
-                    />
-                    <Button variant="outline-secondary" id="button-addon2">
-                        Ajouter
-                    </Button>
-                </InputGroup>
+            <div className="input-group mb-3">
+                <input
+                    onChange={this.updateProductName}
+                    type="text"
+                    className="form-control"
+                    placeholder="Taper le nom de votre article"
+                    aria-label="nom article"
+                    aria-describedby="basic-addon2" />
+                
+                <input
+                    type="range"
+                    defaultValue={0}
+                    value={this.state.value}
+                    onChange={this.updatePrice}
+                    className="form-range" />
+                
+                <button
+                    onClick={this.sendItem}
+                    type="button"
+                    className="btn btn-success rounded"
+                > Add To List - {this.state.price}€</button>
+
+
             </div>
         )
     }
 }
+
 export default Add

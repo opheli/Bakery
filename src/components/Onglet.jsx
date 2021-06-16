@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+
 class Onglet extends React.Component {
     constructor() {
         super();
@@ -7,15 +7,19 @@ class Onglet extends React.Component {
     }
     render() {
         return (
-            <div>
-                <Button
+            <span>
+                <button
+                    type="button"
                     active={this.props.isSelected}
                     onClick={this.props.onClick}
-                >
+                    className="btn btn-info m-1">
                     {this.props.children}
-                </Button>
-            </div>
+                </button>
+            </span>
+
         )
     }
 }
 export default Onglet
+
+// active={this.props.isSelected ? 'btn btn-info' : 'btn btn-dark'}
