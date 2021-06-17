@@ -16,14 +16,26 @@ class App extends React.Component {
     this.addItem = this.addItem.bind(this)
   }
 
-  addItem(name, price,) {
+  addItem(name, price) {
     const itemToAdd = {
       name: name,
       price: price,
+      image: ''
     }
+    
+    const itemFound = this.state.itemsImage.find(item => item.name === name)
+    console.log(itemFound)
+
+    itemToAdd.image = itemFound ? itemFound.image : '/images/item.png'
+
     this.setState({
       items: [...this.state.items, itemToAdd]
     })
+  }
+
+  deleteItem = (index) => {
+    this.state.items.splice(index, 1)
+    this.setState({ items: [...this.state.items] })
   }
 
   async componentDidMount() {
@@ -54,7 +66,7 @@ class App extends React.Component {
           onClick={() => this.setState({ activeTab: 'pay' })}>Pay </Onglet>
         <hr></hr>
         {this.state.activeTab === 'add' && <Add onAdd={this.addItem} />}
-        {this.state.activeTab === 'list' && <List items={this.state.items} />}
+        {this.state.activeTab === 'list' && <List items={this.state.items} deleteItem={this.deleteItem}/>}
         {this.state.activeTab === 'pay' && <Pay items={this.state.items} />}
       </div>
     );

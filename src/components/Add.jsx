@@ -35,14 +35,14 @@ class Add extends React.Component {
                     placeholder="Taper le nom de votre article"
                     aria-label="nom article"
                     aria-describedby="basic-addon2" />
-                
+
                 <input
                     type="range"
                     defaultValue={0}
                     value={this.state.value}
                     onChange={this.updatePrice}
                     className="form-range" />
-                
+
                 <button
                     onClick={this.sendItem}
                     type="button"

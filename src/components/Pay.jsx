@@ -16,7 +16,7 @@ class Pay extends React.Component {
         this.handleSelect = this.handleSelect.bind(this)
 
     }
- 
+
 
     handleSelect(name, price) {
         const handleSelectToAdd = {
@@ -25,12 +25,12 @@ class Pay extends React.Component {
         }
 
         const newBasket = [...this.state.basket, handleSelectToAdd]
-       
+
 
         let total = 0
         for (let i = 0; i < newBasket.length; i++) {
             const item = newBasket[i]
-            total = total + Number (item.price)
+            total = total + Number(item.price)
         }
         const totalEcoTax = 0.03 * newBasket.length
 
@@ -64,6 +64,7 @@ class Pay extends React.Component {
 
                                 productName={item.name}
                                 price={item.price}
+                                image={item.image}
                                 onClick={this.handleSelect}
                             />
                         </div>,
